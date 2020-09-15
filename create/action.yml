@@ -19,8 +19,14 @@ inputs:
     description: The k3s node name.
     required: false
     default: k3s
+  set_kubeconfig_env:
+    description: |
+      Sets the KUBECONFIG environment variable to be available for the next
+      steps.
+    required: false
+    default: true
 outputs:
-  kubeconfig: 
+  kubeconfig:
     description: The kubeconfig path for the k3s cluster admin.
     value: ${{ steps.create.outputs.kubeconfig }}
 runs:
@@ -32,3 +38,10 @@ runs:
     env:
       K3S_NODE_NAME: ${{ inputs.node_name }}
       K3S_KUBECONFIG_MODE: "644"
+  - run: |-
+      set -o errexit
+      if [[ "${{ inputs.set_kubeconfig_env }}" == true ]]; then
+        echo "::set-env name=KUBECONFIG::${{ steps.create.outputs.kubeconfig }}"
+        >&2 echo "KUBECONFIG=${{ steps.create.outputs.kubeconfig }}"
+      fi
+    shell: bash
