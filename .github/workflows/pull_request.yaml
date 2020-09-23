@@ -11,4 +11,4 @@ jobs:
         submodules: true
         fetch-depth: 0
     - name: Generate Actions Documentation
-      uses: f0rmiga/doc-generator-actions/github-actions@master
+      uses: SUSE/doc-generator-actions/github-actions@master
