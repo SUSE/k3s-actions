@@ -31,6 +31,6 @@ runs:
         ${{ inputs.images }}
       )
 
-      >&2 echo "Importing images ${images[@]}..."
+      >&2 echo "Importing images ${images[*]}..."
       docker save "${images[@]}" | sudo k3s ctr images import /dev/stdin
     shell: bash
