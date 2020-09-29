@@ -1,0 +1,21 @@
+name: Pull Request
+
+on: pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test create cluster
+      uses: ./create
+    - name: Pull some images
+      run: |-
+        docker pull opensuse/leap:15.1
+        docker pull opensuse/leap:15.2
+    - name: Load the images
+      uses: ./images-import
+      with:
+        images: |-
+          opensuse/leap:15.1
+          opensuse/leap:15.2
