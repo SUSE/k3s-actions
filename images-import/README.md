@@ -6,7 +6,7 @@ Imports an image into the k3s cluster.
 
 | Name | Description | Required | Default |
 | --- | --- | --- | --- |
-| image | The image to be imported to the k3s cluster. | true |  |
+| images | The images to be imported to the k3s cluster. One image per line is accepted. | true |  |
 
 ## Outputs
 
