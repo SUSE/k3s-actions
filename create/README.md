@@ -6,8 +6,8 @@ Creates a new k3s cluster.
 
 | Name | Description | Required | Default |
 | --- | --- | --- | --- |
-| node_name | The k3s node name. | false | k3s |
-| set_kubeconfig_env | Sets the KUBECONFIG environment variable to be available for the next steps.  | false | true |
+| node_name | The k3s node name. | false | `k3s` |
+| set_kubeconfig_env | Sets the KUBECONFIG environment variable to be available for the next steps.  | false | `true` |
 
 ## Outputs
 
