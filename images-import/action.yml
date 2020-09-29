@@ -15,16 +15,22 @@
 name: k3s Images Import
 description: Imports an image into the k3s cluster.
 inputs:
-  image:
-    description: The image to be imported to the k3s cluster.
+  images:
+    description: |-
+      The images to be imported to the k3s cluster. One image per line is
+      accepted.
     required: true
 outputs: {}
 runs:
   using: composite
   steps:
   - run: |-
-      set -o errexit -o pipefail
-      >&2 echo "Importing image ${{ inputs.image }}..."
-      docker save "${{ inputs.image }}" \
-        | sudo k3s ctr images import /dev/stdin
+      set -o errexit -o nounset -o pipefail
+
+      images=(
+        ${{ inputs.images }}
+      )
+
+      >&2 echo "Importing images ${images[*]}..."
+      docker save "${images[@]}" | sudo k3s ctr images import -
     shell: bash
