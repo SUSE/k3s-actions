@@ -24,7 +24,7 @@ inputs:
       Sets the KUBECONFIG environment variable to be available for the next
       steps.
     required: false
-    default: true
+    default: 'true'
 outputs:
   kubeconfig:
     description: The kubeconfig path for the k3s cluster admin.
