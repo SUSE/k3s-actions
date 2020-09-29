@@ -1,0 +1,19 @@
+name: Documentation Generation
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  generate_doc:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+        fetch-depth: 0
+    - name: Generate Actions Documentation
+      uses: SUSE/doc-generator-actions/github-actions@v0.1.0
+      with:
+        github_token: '${{ github.token }}'
